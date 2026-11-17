@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tc4-monitoramento-multimodal"
+version = "0.1.0"
+description = "Tech Challenge Fase 4 — monitoramento multimodal de pacientes (protótipo acadêmico)"
+requires-python = ">=3.10,<3.14"
+
+[project.scripts]
+tc4 = "tc4.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100

@@ -1,0 +1,23 @@
+{
+  "_aviso": "Valores EDUCACIONAIS para demonstração acadêmica. Não usar em decisão clínica real.",
+  "drugs": {
+    "dipirona":     {"class": "analgesico",     "max_daily_mg": 4000, "high_alert": false, "continuous": false},
+    "paracetamol":  {"class": "analgesico",     "max_daily_mg": 4000, "high_alert": false, "continuous": false},
+    "tramadol":     {"class": "opioide",        "max_daily_mg": 400,  "high_alert": true,  "continuous": false},
+    "morfina":      {"class": "opioide",        "max_daily_mg": null, "high_alert": true,  "continuous": false},
+    "ondansetrona": {"class": "antiemetico",    "max_daily_mg": 24,   "high_alert": false, "continuous": false},
+    "enoxaparina":  {"class": "anticoagulante", "max_daily_mg": 200,  "high_alert": true,  "continuous": true},
+    "cetorolaco":   {"class": "aine",           "max_daily_mg": 120,  "high_alert": false, "continuous": false},
+    "cefazolina":   {"class": "antibiotico",    "max_daily_mg": 6000, "high_alert": false, "continuous": false},
+    "omeprazol":    {"class": "ibp",            "max_daily_mg": 80,   "high_alert": false, "continuous": false}
+  },
+  "duplicate_sensitive_classes": ["opioide", "aine", "anticoagulante"],
+  "interactions": [
+    {"pair": ["tramadol", "ondansetrona"], "severity": 1,
+     "risk": "possível redução do efeito analgésico e risco serotoninérgico; monitorar"},
+    {"pair": ["enoxaparina", "cetorolaco"], "severity": 2,
+     "risk": "aumento do risco de sangramento (anticoagulante + AINE)"},
+    {"pair": ["morfina", "ondansetrona"], "severity": 1,
+     "risk": "monitorar sedação e intervalo QT"}
+  ]
+}

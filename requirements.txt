@@ -1,0 +1,15 @@
+# Python 3.11 ou 3.12 (macOS Apple Silicon e Windows). Versões mínimas; gere um lock após validar.
+numpy>=1.26,<3
+pandas>=2.1
+scipy>=1.11
+scikit-learn>=1.4
+matplotlib>=3.8
+opencv-python>=4.9
+ultralytics>=8.3,<9
+azure-cognitiveservices-speech>=1.40
+azure-ai-textanalytics>=5.3
+soundfile>=0.12
+imageio-ffmpeg>=0.5
+streamlit>=1.38
+python-dotenv>=1.0
+pytest>=8.0

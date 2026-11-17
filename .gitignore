@@ -1,0 +1,16 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+runtime/
+*.egg-info/
+build/
+dist/
+# pesos baixados automaticamente pelo ultralytics
+*.pt
+# dados baixados/grandes
+data/physionet/bidmc/
+data/samples/*
+!data/samples/.gitkeep
+!data/samples/README.md
