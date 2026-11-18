@@ -1,5 +1,7 @@
 # Tech Challenge Fase 4 — Monitoramento multimodal de pacientes
 
+**Vídeo de demonstração:** https://youtu.be/87z6JiW3NDU · **Relatório:** [docs/RELATORIO_TECNICO.md](docs/RELATORIO_TECNICO.md)
+
 Projeto individual de Gabriel Augusto Russo, continuação das fases
 [1](https://github.com/gabrielrusso6/tech-challenge-fase1-diagnostico-cancer-mama),
 [2](https://github.com/gabrielrusso6/tech-challenge-fase2-otimizacao-diagnostico) e
