@@ -4,13 +4,10 @@
 | Campo | Informação |
 |---|---|
 | Projeto | Monitoramento multimodal (vídeo, áudio, sinais vitais, prescrições e movimentação) com alertas à equipe médica |
-| Repositório Git | ⟨link do GitHub⟩ |
-| Vídeo de demonstração | ⟨link YouTube não listado⟩ |
+| Repositório Git | https://github.com/gabrielrusso6/tech-challenge-fase4-monitoramento-multimodal |
+| Vídeo de demonstração | https://youtu.be/87z6JiW3NDU |
 | Integrante | Gabriel Augusto Russo |
 | Data | 17/11/2026 |
-
-> Os trechos marcados com ⟨…⟩ devem ser preenchidos com os números da sua execução
-> (arquivos em `reports/` e `runtime/results/`). Não preencher com valores esperados.
 
 ---
 
@@ -61,7 +58,7 @@ heterogêneos e explicar cada alerta pela lista de evidências.
 | PhysioNet BIDMC PPG and Respiration (ODC-By 1.0) | 53 registros de 8 min; FC, FR, SpO2 a 1 Hz (pacientes de UTI) | Zeros tratados como ausência, interpolação; PA sistólica/diastólica **sintéticas** correlacionadas à FC; eventos injetados e rotulados (taquicardia, dessaturação, hipotensão, taquipneia, artefato) |
 | Prescrições | CSV sintético de 2 pacientes (SYN-101 com eventos, SYN-102 estável) | Tabela de referência educacional de doses, classes e interações |
 | Movimentação | Contagens de atividade a cada 10 min, 5 dias, sintéticas | Perfil circadiano, recuperação progressiva e eventos rotulados |
-| Vídeo | (1) exercício de elevação de braços, vídeo público Pexels ⟨título/autor/link⟩, execução normal; (2) ⟨vídeo gravado pelo autor com execução alterada⟩ | Amostragem a ~10 quadros/s (25 fps → 1 a cada 2 quadros = 12,5 fps) |
+| Vídeo | Dois vídeos gravados pelo próprio autor, com consentimento, no mesmo ambiente e com o celular na vertical: (1) elevação lateral dos dois braços executada corretamente (controle); (2) o mesmo exercício executado errado de propósito (assimetria, amplitude reduzida, fadiga) | Amostragem a ~10 quadros/s (30 fps → 1 a cada 3 quadros; 25 fps → 1 a cada 2) |
 | Áudio | Duas consultas sintéticas pt-BR geradas com Azure Text to Speech (vozes Francisca e Antonio; SSML com pausas e ritmo reduzido no caso de alerta) | Conversão para WAV 16 kHz mono |
 
 Nenhum dado real identificável de paciente foi usado.
@@ -155,9 +152,12 @@ Figura: `reports/figures/vitals_example.png`. Análise:
 ### 5.2 Exemplos de anomalias detectadas
 | Fonte | Exemplo | Severidade |
 |---|---|---|
-| Vídeo (controle) | execução correta: pessoa detectada em 100% dos quadros, 9 repetições, amplitude mediana 158°, braços simétricos (p95 167° × 174°), tendência +0,2°/rep → nenhum achado (sem falso alarme) | — |
-| Vídeo | ⟨ex.: repetição 4 com amplitude 82° vs mediana 150°⟩ | ATENÇÃO |
-| Vídeo | ⟨fadiga progressiva / possível queda⟩ | |
+| Vídeo (controle) | execução correta (27,8 s): 1 pessoa, 8 repetições, amplitude mediana 101° (elevação até a altura dos ombros), braços simétricos (p95 97° × 103°), tendência −1,3°/rep (sem fadiga) → **nenhum achado de atenção** (sem falso alarme); só INFO de entrada/saída do quadro e 2 transições marcadas como atípicas pelo Isolation Forest | — |
+| Vídeo (alterado) | vídeo gravado pelo autor (47,8 s, celular vertical, 10 fps analisados): pessoa detectada em 93% dos quadros, 10 repetições, amplitude mediana 137° | — |
+| Vídeo (alterado) | repetição 8: diferença de 92° entre ombro esquerdo e direito (assimetria, braço limitado do lado operado); repetição 10: diferença de 30° | ATENÇÃO |
+| Vídeo (alterado) | repetições 9 e 10 com amplitude de 91° e 69° contra mediana de 137° (amplitude reduzida) | ATENÇÃO |
+| Vídeo (alterado) | amplitude cai de 144° para 103° ao longo da sessão, tendência −6,6°/repetição (possível fadiga ou dor) | ATENÇÃO |
+| Vídeo (alterado) | 2 segmentos com padrão de movimento atípico (Isolation Forest); 2 s iniciais sem paciente no quadro | INFO |
 | Áudio | "falta de ar" e "aperto no peito"; Azure Health: *Dyspnea*, *Chest tightness* | CRÍTICO |
 | Áudio | "cansada", "fraqueza", "sem força"; braço "inchado" e "vermelho" (linfedema/ferida); fadiga vocal (132 palavras/min, 5,2 pausas longas/min) | ATENÇÃO |
 | Sinais vitais | registro BIDMC 01: taquicardia injetada (FC 141 bpm, t=196–251 s) e dessaturação injetada (SpO2 87%, t=383–441 s) | CRÍTICO |
@@ -188,7 +188,7 @@ status passou de *novo* para *reconhecido*, com revisor e observação registrad
 | Pausas ≥ 1 s por minuto | 0,0 | 5,2 (limiar > 4) |
 | Pausas curtas por minuto | 13,6 | 16,9 (limiar > 18, não disparou) |
 | Variação de F0 (Hz) | 68,7 | 74,3 |
-| Sentimento (Azure) | sem alerta | negativo (média 0,60) |
+| Sentimento (Azure) | sem alerta | geral *mixed*, negatividade média 0,60 |
 | Sintomas (Azure Health, ligados a UMLS) | *Pain* (dor em melhora) | *Dyspnea*, *Chest tightness* |
 | Achados | 1 INFO | 10: 2 CRÍTICO, 6 ATENÇÃO (inclui fadiga vocal), 2 INFO |
 

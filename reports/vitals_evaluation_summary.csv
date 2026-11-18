@@ -1,0 +1,5 @@
+method,precision,recall,f1,event_recall,mean_latency_s,false_alarms_per_hour
+ensemble,0.968,0.903,0.934,1.0,2.5,2.244
+iforest,0.1,0.008,0.015,0.05,2.0,0.0
+rule,0.945,0.731,0.81,0.8,10.45,1.496
+zscore,0.983,0.872,0.923,1.0,3.1,1.496
